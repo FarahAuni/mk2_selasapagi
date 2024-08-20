@@ -34,49 +34,78 @@
                     <td colspan="2">Customer Information</td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="text" placeholder="Name"></td>
+                    <td colspan="2"><input type="text" id="customerName" placeholder="Name"></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="email" placeholder="Email"></td>
+                    <td colspan="2"><input type="email" id="customerEmail" placeholder="Email"></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="text" placeholder="Phone Number"></td>
+                    <td colspan="2"><input type="text" id="customerPhone" placeholder="Phone Number"></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="text" placeholder="Address"></td>
+                    <td colspan="2"><input type="text" id="customerAddress" placeholder="Address"></td>
                 </tr>
                 <tr>
                     <td colspan="2">Order Details</td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="text" placeholder="Product Name"></td>
+                    <td colspan="2"><input type="text" id="productName" placeholder="Product Name"></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="text" placeholder="Product type"></td>
+                    <td colspan="2"><input type="text" id="productType" placeholder="Product type"></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="number" placeholder="Quantity"></td>
+                    <td colspan="2"><input type="number" id="quantity" placeholder="Quantity"></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="text" placeholder="Total Price"></td>
+                    <td colspan="2"><input type="text" id="totalPrice" placeholder="Total Price"></td>
                 </tr>
                 <tr>
                     <td colspan="2">Payment Information</td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="text" placeholder="Payment method"></td>
+                    <td colspan="2"><input type="text" id="paymentMethod" placeholder="Payment method"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button id="submitOrder">Submit Order</button></td>
                 </tr>
             </table>
         </div>
-
-        <!-- Contact Information Section -->
-        <div class="contact-info">
-            <p>Contact Us</p>
-            <p>Email: <a href="mailto:farahaunikhalil@gmail.com">farahaunikhalil@gmail.com</a></p>
-            <p>Customer Service: <a href="tel:+601110540368">+601110540368</a></p>
-            <p>WhatsApp: <a href="https://wa.me/601110540368" target="_blank">+601110540368</a></p>
-            <p>No. 8, Buah Putra, Arau</p>
-        </div>
+        <p>No. 8, Buah Putra, Arau</p>
     </div>
+
+    <script>
+        document.getElementById('submitOrder').addEventListener('click', function() {
+            // Collect data from form fields
+            const orderData = {
+                customerName: document.getElementById('customerName').value,
+                customerEmail: document.getElementById('customerEmail').value,
+                customerPhone: document.getElementById('customerPhone').value,
+                customerAddress: document.getElementById('customerAddress').value,
+                productName: document.getElementById('productName').value,
+                productType: document.getElementById('productType').value,
+                quantity: document.getElementById('quantity').value,
+                totalPrice: document.getElementById('totalPrice').value,
+                paymentMethod: document.getElementById('paymentMethod').value
+            };
+
+            // Send the data to the server or backend script
+            fetch('your-backend-url-here', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Order submitted successfully!');
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
 </body>
 </html>
